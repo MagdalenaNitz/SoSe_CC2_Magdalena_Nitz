@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My first A-Frame Scene</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <a-scene>
+        <a-sky src="Freiburg.jpg"></a-sky>
+
+        <!-- Cursor -->
+        <a-entity cursor="rayOrigin: mouse" raycaster="objects:.clickable"></a-entity>
+
+        <!-- Text -->
+        <a-text id="gotoScene2" class="clickable" value="Zur zweiten Szene" position="0 1.5 -3" color="lightblue"></a-text>
+    </a-scene>
+</body>
+</html>
