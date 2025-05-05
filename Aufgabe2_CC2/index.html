@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Urlaubskart</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.7/aframe/build/aframe-ar.js"></script>
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AR Urlaubskarte</title>
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <!-- AR.js für A-Frame -->
+  <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.7/aframe/build/aframe-ar.js"></script>
+  <!-- Dein Skript -->
+  <script src="script.js" defer></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs> <!-- Definition des Markers, der die Blumen generiert -->
-        <a-marker type="pattern" url="flower.patt" generate-flowers></a-marker>
-        <a-box position="0 0.5 0" material="opacity: 0.5;"></a-box>
-            <a-entity camera></a-entity> <!-- Kamera_Entity für die AR-Szene -->
-    </a-scene> <!-- Link zum Herunterladen des Marker-Bildes -->
-    <p>Download the marker image <a href="flower.jpeg" download>here</a></p>
+  <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    <!-- Marker mit Komponente -->
+    <a-marker type="pattern" url="marker.patt" generate-flowers>
+      <!-- Optional: Platzhalter-Objekt zur Orientierung -->
+      <a-box position="0 0.1 0" depth="0.1" height="0.1" width="0.1" color="#AAA"></a-box>
+    </a-marker>
+
+    <!-- Kamera -->
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <p style="position: absolute; top: 10px; left: 10px; color: white; background: rgba(0,0,0,0.5); padding: 5px;">
+    Download the marker image <a href="marker.jpeg" download style="color: yellow;">here</a>
+  </p>
 </body>
 </html>
