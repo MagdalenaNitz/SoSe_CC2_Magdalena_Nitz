@@ -6,13 +6,14 @@
     <title>AR Urlaubskart</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.7/aframe/build/aframe-ar.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs>
-        <a-marker preset="hiro">
+    <a-scene embedded arjs> <!-- Definition des Markers, der die Blumen generiert -->
+        <a-marker type="pattern" url="flower.patt" generate-flowers></a-marker>
         <a-box position="0 0.5 0" material="opacity: 0.5;"></a-box>
-        </a-marker>
-        <a-entity camera></a-entity>
-    </a-scene>
+            <a-entity camera></a-entity> <!-- Kamera_Entity für die AR-Szene -->
+    </a-scene> <!-- Link zum Herunterladen des Marker-Bildes -->
+    <p>Download the marker image <a href="flower.jpeg" download>here</a></p>
 </body>
 </html>
