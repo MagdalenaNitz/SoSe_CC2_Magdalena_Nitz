@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hindernisrennen</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a-scene>
+        <!-- Kamera mit Blicksteuerung -->
+        <a-camera position="0 1.6 0">
+            <a-cursor fuse="true" timeout="1500"></a-cursor>
+        </a-camera>
+
+        <!-- Umgebung -->
+        <a-plane position="0 0 -10" rotation="-90 0 0" width="20" height="20" color="green"></a-plane>
+        <a-sky color="lightblue"></a-sky>
+
+        <!-- Hindernisse -->
+        <a-box class="baumstamm" position="0 0 -4" width="3" height="0.5" depth="0.5" color="brown"></a-box>
+        <a-box class="fels" position="2 0 -6" width="2" height="1" depth="2" color="gray"></a-box>
+        <a-box class="fluss" position="0 -0.2 -8" width="4" height="0.2" depth="2" color="blue"></a-box>
+    </a-scene>
+
+    <script src="script.js"></script>
+</body>
+</html>
