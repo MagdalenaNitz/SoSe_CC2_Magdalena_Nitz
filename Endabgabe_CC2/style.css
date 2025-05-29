@@ -7,3 +7,7 @@ body {
 .hindernis {
     transition: transform 0.3s ease-in-out;
 }
+
+#fluss {
+    opacity: 0.8;
+}
