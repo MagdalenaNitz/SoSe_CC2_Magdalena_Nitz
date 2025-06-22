@@ -2,26 +2,75 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Natur zum Anfassen</title>
+  <title>Basic A‑Frame Szene (nur visuell)</title>
+
+  <!-- A‑Frame Grundbibliothek für 3D, VR und AR -->
   <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-  <script src="https://codechanger.com/physics.js"></script>
-  <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+
+  <!-- Erweiterung für vorgefertigte Umgebungen wie Wald, Stadt, etc. -->
+  <script src="https://unpkg.com/aframe-environment-component@1.3.x/dist/aframe-environment-component.min.js"></script>
+
+  <!-- Eigene Teich-Komponente -->
+  <script src="pond.js"></script>
 </head>
 <body>
-  <a-scene>
-    <a-box dynamic-body position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-    <a-sphere dynamic-body position="0 3.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-    <a-cylinder dynamic-body position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
 
-    <!-- Boden -->
-    <a-plane static-body position="0 -0.02 -4" rotation="-90 0 0" width="400" height="400" color="#7BC8A4">
+  <!-- Haupt-3D-Szene mit Wald-Umgebung (preset: forest), enthält automatisch generierte Bäume -->
+  <a-scene environment="preset: forest; dressingAmount: 300">
+
+    <!-- Assets, also vorbereitete externe Ressourcen (Bilder, etc.) -->
+    <a-assets>
+      <!-- Textur für den Boden -->
+      <img id="groundTex" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
+
+      <!-- 360°-Bild für den Himmel -->
+      <img id="skyTex" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+    </a-assets>
+
+    <!-- Bodenfläche mit Boden-Textur -->
+    <a-plane 
+      src="#groundTex"             <!-- Referenz zur Boden-Textur -->
+      rotation="-90 0 0"           <!-- Dreht die Fläche waagrecht auf den Boden -->
+      width="30" height="30"       <!-- Größe der Fläche -->
+      repeat="10 10">              <!-- Wiederholt die Textur für bessere Optik -->
     </a-plane>
 
-    <!-- Himmel -->
-    <a-sky color="#ECECEC"></a-sky>
+    <!-- Himmelshintergrund mit 360°-Bild -->
+    <a-sky 
+      src="#skyTex"                <!-- Referenz zum Himmelbild -->
+      rotation="0 -90 0">          <!-- Richtet das Bild passend aus -->
+    </a-sky>
 
-    <!-- Text -->
-    <a-entity environment="present:forest;"></a-entity>
+    <!-- Lichtquellen für die Szene -->
+
+    <!-- Umgebungslicht: sorgt für gleichmäßige Grundhelligkeit -->
+    <a-light 
+      type="ambient" 
+      color="#445451">
+    </a-light>
+
+    <!-- Punktlicht: leuchtet von einem Punkt aus, erzeugt Highlights -->
+    <a-light 
+      type="point" 
+      intensity="2" 
+      position="2 4 4">
+    </a-light>
+
+    <!-- Kamera mit eingebautem Cursor -->
+    <a-camera>
+      <!-- Cursor zeigt als Punkt in der Mitte, z.B. zum Interagieren -->
+      <a-cursor color="#FAFAFA"></a-cursor>
+    </a-camera>
+
+    <!-- Text-Objekt, das in der Szene schwebt -->
+    <a-entity 
+      text="value: Natur zum Anfassen! Klicke Objekte an und erfahre, was passiert.; color: #FAFAFA; width: 5; anchor: center" 
+      position="-1 3 -4"           <!-- Position im Raum -->
+      scale="1.5 1.5 1.5">         <!-- Vergrößert den Text -->
+    </a-entity>
+
+    <!-- Der Teich -->
+    <a-entity pond></a-entity>
 
   </a-scene>
 </body>
