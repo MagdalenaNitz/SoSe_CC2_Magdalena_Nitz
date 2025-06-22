@@ -33,7 +33,7 @@ AFRAME.registerComponent('tree-field', {
         const sy = 1 + Math.random() * 0.6;
         const sz = 1 + Math.random() * 0.3;
         const scale = `${sx} ${sy} ${sz}`;
-        const yPos = trunkHeight + r * sy;
+        const yPos = trunkHeight + r * sy * 0.5;
   
         crown.setAttribute('radius', r);
         crown.setAttribute('scale', scale);
