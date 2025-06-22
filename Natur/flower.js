@@ -1,32 +1,58 @@
 AFRAME.registerComponent('flower-field', {
     init: function () {
       const scene = this.el;
-      const flowerCount = 1500;
-      const areaSize = 90;
+      const totalFlowers = 3000;
+      const randomFlowers = 1500;
+      const bedFlowers = totalFlowers - randomFlowers;
   
+      const areaSize = 90;
       const pondX = 0;
       const pondZ = -5;
-      const pondRadius = 3.2; // etwas größer als der sichtbare Teich
+      const pondRadius = 3.2;
   
       const petalColors = ['#FF69B4', '#FFD700', '#FF4500', '#ADFF2F', '#DA70D6', '#87CEFA'];
   
+      // 1. Zufällig verteilte Blumen (außerhalb des Teichs)
       let placed = 0;
-      while (placed < flowerCount) {
+      while (placed < randomFlowers) {
         const x = (Math.random() - 0.5) * areaSize;
         const z = (Math.random() - 0.5) * areaSize;
-  
-        // Abstand zum Teichzentrum berechnen
         const dx = x - pondX;
         const dz = z - pondZ;
         const distance = Math.sqrt(dx * dx + dz * dz);
+        if (distance < pondRadius) continue;
   
-        if (distance < pondRadius) continue; // zu nah am Teich → überspringen
+        createFlower(scene, x, 0.015, z, petalColors);
+        placed++;
+      }
   
-        const y = 0.015;
+      // 2. Zentriertes Blumenbeet um den Teich
+      const bedFlowerCount = 150;
+
+      for (let i = 0; i < bedFlowerCount; i++) {
+        // Position zufällig im Umkreis um den Teich
+        const angle = Math.random() * Math.PI * 2;
+        const distance = pondRadius + 0.07 + Math.random() * 0.9;
+        const jitterX = (Math.random() - 0.5) * 0.4;
+        const jitterZ = (Math.random() - 0.5) * 0.4;
+      
+        const x = pondX + Math.cos(angle) * distance + jitterX;
+        const z = pondZ + Math.sin(angle) * distance + jitterZ;
+      
+        // Bereich vor dem Teich (z. B. Richtung -Z) aussparen
+        const forwardAngle = -Math.PI / 2;
+        const angleDiff = Math.abs(angle - forwardAngle);
+        if (angleDiff < Math.PI / 4) continue;
+      
+        createFlower(scene, x, 0.015, z, petalColors);
+      }
+      
+  
+      //Erzeugen einer Blume
+      function createFlower(scene, x, y, z, colors) {
         const flower = document.createElement('a-entity');
         flower.setAttribute('position', `${x} ${y} ${z}`);
   
-        // Stängel
         const stem = document.createElement('a-cylinder');
         stem.setAttribute('height', '0.18');
         stem.setAttribute('radius', '0.012');
@@ -35,10 +61,8 @@ AFRAME.registerComponent('flower-field', {
         stem.setAttribute('shadow', 'cast: true');
         flower.appendChild(stem);
   
-        // Blütenfarbe
-        const color = petalColors[Math.floor(Math.random() * petalColors.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)];
   
-        // Blütenblätter (senkrecht, sichtbar)
         for (let j = 0; j < 5; j++) {
           const angle = (j / 5) * Math.PI * 2;
           const px = Math.cos(angle) * 0.045;
@@ -55,7 +79,6 @@ AFRAME.registerComponent('flower-field', {
         }
   
         scene.appendChild(flower);
-        placed++;
       }
     }
   });
