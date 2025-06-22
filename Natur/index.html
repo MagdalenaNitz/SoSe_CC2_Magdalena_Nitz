@@ -8,38 +8,36 @@
   <script src="https://unpkg.com/aframe-environment-component@1.3.x/dist/aframe-environment-component.min.js"></script> <!-- Erweiterung für vorgefertigte Umgebungen (Wald, Stadt, etc.) -->
   <script src="pond.js"></script> <!-- Teich -->
   <script src="stone.js"></script> <!-- Stein -->
+  <script src="tree.js"></script> <!-- Baum -->
 
 </head>
 <body>
 
   <a-scene 
     shadow="type: pcfsoft"
-    environment="preset: forest; dressingAmount: 300" 
+    environment="preset: forest; dressingAmount: 500; ground: none"
     cursor="rayOrigin: mouse" 
     raycaster="objects: .clickable">
 
     <!-- Assets (Texturen, Bilder etc.) -->
     <a-assets>
-      <!-- Textur für Grasboden -->
-      <img id="grassTex" src="https://cdn.pixabay.com/photo/2017/02/14/15/12/grass-2068277_1280.jpg">
-
-      <!-- 360°-Bild für Himmel -->
-      <img id="skyTex" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
-
-      <!-- Textur für den Teich -->
-      <img id="waterTex" src="TexturePond.jpeg">
-
-      <!-- Textur für die Steine -->
-      <img id="stoneTex" src="TextureStone.jpeg">
+      <img id="grassTex" src="TextureGrass.jpeg"> <!-- Textur für Grasboden -->
+      <img id="skyTex" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg"> <!-- 360°-Bild für Himmel -->
+      <img id="waterTex" src="TexturePond.jpeg"> <!-- Textur für den Teich -->
+      <img id="stoneTex" src="TextureStone.jpeg"> <!-- Textur für die Steine -->
+      <img id="trunkTex" src="TextureTrunk.jpeg"> <!-- Textur für die Baumstämme -->
     </a-assets>
 
-    <!-- Boden mit Grastextur -->
+    <!-- Grasboden -->
     <a-plane 
         position="0 0.01 0"
-        width="30" height="30"
+        rotation="-90 0 0"
+        width="200" height="200"
         src="#grassTex"
-        material="shader: flat; side: double; repeat: 10 10">
+        shadow="receive: true"
+        material="src: #grassTex; repeat: 1 1; shader: standard; side: double; roughness: 1; metalness: 0; wrap: repeat">
     </a-plane>
+
     <!-- Himmel -->
     <a-sky src="#skyTex" rotation="0 -90 0"></a-sky>
 
@@ -60,8 +58,10 @@
       scale="1.5 1.5 1.5">
     </a-entity>
 
-    <!-- Teich (per Komponente eingefügt) -->
-    <a-entity pond></a-entity>
+    <!-- Interaktive Elemente -->
+    <a-entity pond></a-entity> <!-- Teich -->
+    <a-entity tree-field></a-entity> <!-- Bäume -->
+
 
   </a-scene>
 </body>
