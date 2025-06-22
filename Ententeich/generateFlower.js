@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createFlower(x, z) {
       const stemHeight = 0.6;
   
-      // Stiel
+      // Stiel (grüner Zylinder)
       const stem = document.createElement('a-cylinder');
       stem.setAttribute('height', stemHeight);
       stem.setAttribute('radius', 0.02);
@@ -12,17 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
       stem.setAttribute('position', `${x} ${stemHeight / 2} ${z}`);
       scene.appendChild(stem);
   
-      // Blütenkopf
+      // Blütenkopf (Elternelement)
       const flowerHead = document.createElement('a-entity');
       flowerHead.setAttribute('position', `${x} ${stemHeight} ${z}`);
-      flowerHead.setAttribute('id', 'flower');
-      flowerHead.classList.add('clickable');
+      flowerHead.classList.add('flower', 'clickable'); // Wichtig: keine ID, sondern Klassen
   
+      // Zentrum der Blüte (gelbe Kugel)
       const center = document.createElement('a-sphere');
       center.setAttribute('radius', 0.05);
       center.setAttribute('color', 'yellow');
       flowerHead.appendChild(center);
   
+      // Blütenblätter (Kreise)
       const petals = [
         { x: 0.1, z: 0 },
         { x: -0.1, z: 0 },
@@ -40,10 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
         flowerHead.appendChild(petal);
       });
   
+      // Blütenkopf zur Szene hinzufügen
       scene.appendChild(flowerHead);
     }
   
-    // Beispiel: drei Blumen
+    // Beispiel: drei Blumen erzeugen
     createFlower(2, -4);
     createFlower(-1, -3.5);
     createFlower(0.5, -5.5);

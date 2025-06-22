@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const flower = document.querySelector('#flower');
-    if (flower) {
+    const flowers = document.querySelectorAll('.flower');
+    flowers.forEach(flower => {
       flower.addEventListener('click', () => {
         window.dispatchEvent(new CustomEvent('flower-clicked'));
       });
-    }
+    });
   });
   
