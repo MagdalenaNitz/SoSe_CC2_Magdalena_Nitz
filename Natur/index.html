@@ -2,16 +2,21 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Basic A‑Frame Szene mit Teich und Grasboden</title>
+  <title>Natur zum Anfassen</title>
 
   <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script> <!-- A‑Frame Grundbibliothek -->
   <script src="https://unpkg.com/aframe-environment-component@1.3.x/dist/aframe-environment-component.min.js"></script> <!-- Erweiterung für vorgefertigte Umgebungen (Wald, Stadt, etc.) -->
-  <script src="pond.js"></script> <!-- Teich-Komponente -->
-  <script src="stone.js"></script> <!-- Stein-Komponente -->
+  <script src="pond.js"></script> <!-- Teich -->
+  <script src="stone.js"></script> <!-- Stein -->
+
 </head>
 <body>
 
-  <a-scene environment="preset: forest; dressingAmount: 300" cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+  <a-scene 
+    shadow="type: pcfsoft"
+    environment="preset: forest; dressingAmount: 300" 
+    cursor="rayOrigin: mouse" 
+    raycaster="objects: .clickable">
 
     <!-- Assets (Texturen, Bilder etc.) -->
     <a-assets>
@@ -30,19 +35,18 @@
 
     <!-- Boden mit Grastextur -->
     <a-plane 
-        position="0 -0.01 0"
-        rotation="-90 0 0"
+        position="0 0.01 0"
         width="30" height="30"
         src="#grassTex"
         material="shader: flat; side: double; repeat: 10 10">
     </a-plane>
-
     <!-- Himmel -->
     <a-sky src="#skyTex" rotation="0 -90 0"></a-sky>
 
     <!-- Lichtquellen -->
     <a-light type="ambient" color="#445451"></a-light>
-    <a-light type="point" intensity="2" position="2 4 4"></a-light>
+    <a-light type="point" intensity="2" position="2 4 4" castShadow="true"></a-light>
+    <a-light type="directional" position="1 6 -3" intensity="0.6" castShadow="true"></a-light>
 
     <!-- Kamera mit Cursor -->
     <a-camera>
