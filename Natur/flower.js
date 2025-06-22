@@ -61,6 +61,7 @@ AFRAME.registerComponent('flower-field', {
         collider.setAttribute('class', 'clickable');
         collider.setAttribute('position', '0 0.15 0');
         collider.setAttribute('spawn-bee-on-click', '');
+        collider.setAttribute('gaze-zoom', '');
         flower.appendChild(collider);
 
   
