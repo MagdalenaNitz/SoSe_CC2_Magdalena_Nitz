@@ -1,3 +1,4 @@
+/* global AFRAME, THREE*/
 AFRAME.registerComponent('flower-field', {
     init: function () {
       const scene = this.el;
@@ -52,6 +53,16 @@ AFRAME.registerComponent('flower-field', {
       function createFlower(scene, x, y, z, colors) {
         const flower = document.createElement('a-entity');
         flower.setAttribute('position', `${x} ${y} ${z}`);
+    
+        // Klickbarer Collider – macht nur die Blume anklickbar
+        const collider = document.createElement('a-sphere');
+        collider.setAttribute('radius', '0.15');
+        collider.setAttribute('material', 'opacity: 0; transparent: true');
+        collider.setAttribute('class', 'clickable');
+        collider.setAttribute('position', '0 0.15 0');
+        collider.setAttribute('spawn-bee-on-click', '');
+        flower.appendChild(collider);
+
   
         const stem = document.createElement('a-cylinder');
         stem.setAttribute('height', '0.18');
