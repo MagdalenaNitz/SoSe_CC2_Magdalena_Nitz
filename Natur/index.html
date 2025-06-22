@@ -13,15 +13,32 @@
   <script src="bee.js"></script> <!-- Biene -->
   <script src="duck.js"></script> <!-- Ente -->
 
+  <style>
+    #enterVRButton {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 18px;
+      font-size: 16px;
+      background: #222;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      z-index: 999;
+      cursor: pointer;
+    }
+  </style> 
 </head>
+
 <body>
+    <button id="enterVRButton">VR starten</button> <!-- VR-Button für Apple-->
 
   <a-scene 
+    vr-mode-ui="enabled: false; cardboardModeEnabled: true"
     shadow="type: pcfsoft"
     environment="preset: forest; dressingAmount: 500; ground: none"
     cursor="rayOrigin: mouse" 
-    raycaster="objects: .clickable"
-    vr-mode-ui="cardboardModeEnabled: true">
+    raycaster="objects: .clickable">
 
     <!-- Assets (Texturen, Bilder etc.) -->
     <a-assets>
@@ -51,7 +68,7 @@
     <a-light type="directional" position="1 6 -3" intensity="0.9" castShadow="true"></a-light>
 
     <!-- Kamera mit Cursor -->
-    <a-camera>
+    <a-camera look-controls position="0 1.6 0">
         <a-cursor 
           fuse="true" 
           fuse-timeout="1000" 
@@ -71,7 +88,18 @@
     <a-entity tree-field></a-entity> <!-- Bäume -->
     <a-entity flower-field></a-entity> <!-- Blumen -->
 
-
   </a-scene>
+
+  <script>
+    document.getElementById('enterVRButton').addEventListener('click', () => {
+      const scene = document.querySelector('a-scene');
+      if (scene && scene.enterVR) {
+        scene.enterVR();
+      } else {
+        alert('VR-Modus wird nicht unterstützt.');
+      }
+    });
+  </script>
+
 </body>
 </html>
