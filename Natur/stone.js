@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const scene = document.querySelector('a-scene');
   
-    const stoneCount = 55
+    const stoneCount = 45
 ;
-    const radius = 3;
+    const radius = 2.5;
     const centerX = 0;
     const centerZ = -5;
   
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const base = 0.1 + Math.random() * 0.15;
         const heightFactor = 0.4 + Math.random() * 0.7;
-        const yPos = (base * heightFactor) / 2 - 0.02;
+        const yPos = (base * heightFactor) / 2 - 0.04;
 
         const innerStone = document.createElement('a-sphere');
         innerStone.setAttribute('position', `${x} ${yPos} ${z}`);
