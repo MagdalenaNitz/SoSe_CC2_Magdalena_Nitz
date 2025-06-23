@@ -14,37 +14,16 @@
   <script src="bee.js"></script> <!-- Biene -->
   <script src="duck.js"></script> <!-- Ente -->
 
-  <style>
-    #enterVRButton {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 12px 24px;
-      font-size: 18px;
-      background-color: #2196f3;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      z-index: 100;
-    }
-  </style>
-
 </head>
 
 <body>
-
-    <button id="enterVRButton"> VR starten</button>
 
   <a-scene 
     shadow="type: pcfsoft"
     environment="preset: forest; dressingAmount: 500; ground: none"
     cursor="rayOrigin: mouse" 
     raycaster="objects: .clickable"
-    vr-mode-ui="enabled: true"
-    embedded
-    id="scene">
+    vr-mode-ui="enabled: true">
 
     <!-- Assets (Texturen, Bilder etc.) -->
     <a-assets>
@@ -84,7 +63,7 @@
 
     <!-- Textobjekt -->
     <a-entity 
-      text="value: Schaue die Objekte an und erfahre, was passiert!; color: #FAFAFA; width: 5; anchor: center" 
+      text="value: Schaue oder klicke die Objekte an und erfahre, was passiert!; color: #FAFAFA; width: 5; anchor: center" 
       position="-1 3 -4"
       scale="1.5 1.5 1.5">
     </a-entity>
@@ -96,17 +75,5 @@
 
   </a-scene>
 
-  <script>
-    const button = document.getElementById('enterVRButton');
-    const scene = document.querySelector('#scene');
-
-    button.addEventListener('click', () => {
-      if (scene && scene.enterVR) {
-        scene.enterVR();
-      } else {
-        alert('VR-Modus wird nicht unterstützt.');
-      }
-    });
-  </script>
 </body>
 </html>
