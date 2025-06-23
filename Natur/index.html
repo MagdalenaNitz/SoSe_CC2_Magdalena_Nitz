@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
   <title>Natur zum Anfassen</title>
 
   <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script> <!-- A‑Frame Grundbibliothek -->
@@ -15,25 +14,28 @@
   <script src="bee.js"></script> <!-- Biene -->
   <script src="duck.js"></script> <!-- Ente -->
 
+  <style>
+    #enterVRButton {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #222;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      z-index: 999;
+    }
+  </style>
+
 </head>
 
 <body>
 
-    <button id="enterVRButton" style="
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 8px;
-        border: none;
-        background-color: #228B22;
-        color: white;
-        z-index: 999;
-        cursor: pointer;
-        ">
-        VR-Modus starten
-    </button>
+    <button id="enterVRButton"> In Cardboard ansehen</button>
 
   <a-scene 
     shadow="type: pcfsoft"
@@ -95,8 +97,8 @@
   <script>
     document.getElementById('enterVRButton').addEventListener('click', () => {
       const scene = document.querySelector('a-scene');
-      if (scene && scene.enterVR) {
-        scene.enterVR();
+      if (scene && scene.components['vr-mode-ui']) {
+        scene.components['vr-mode-ui'].enterVR();
       } else {
         alert("VR-Modus nicht verfügbar.");
       }
