@@ -11,6 +11,10 @@ AFRAME.registerComponent('pond', {
     pond.setAttribute('class', 'clickable');
     pond.setAttribute('material', 'shader: standard; transparent: true; opacity: 0.6; roughness: 0.3; metalness: 0.1; side: double');
 
+    pond.setAttribute('class', 'clickable');
+    pond.setAttribute('spawn-duck-on-click', '');
+
+
     this.el.appendChild(pond);
   }
 });
