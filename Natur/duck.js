@@ -5,7 +5,7 @@ AFRAME.registerComponent('spawn-duck-on-click', {
       const pos = new THREE.Vector3();
       this.el.object3D.getWorldPosition(pos);
 
-      // 🎯 Zufällige Startposition im Teichbereich
+      // Zufällige Startposition im Teichbereich
       const startX = pos.x + (Math.random() - 0.5);
       const startZ = pos.z + (Math.random() - 0.5);
       const startY = pos.y + 0.1;
@@ -13,21 +13,21 @@ AFRAME.registerComponent('spawn-duck-on-click', {
       const duck = document.createElement('a-entity');
       duck.setAttribute('position', `${startX} ${startY} ${startZ}`);
 
-      // 🟡 Körper
+      // Körper
       const body = document.createElement('a-sphere');
       body.setAttribute('radius', '0.12');
       body.setAttribute('scale', '1 0.8 1.4');
       body.setAttribute('material', 'color: yellow');
       duck.appendChild(body);
 
-      // 🟡 Kopf
+      // Kopf
       const head = document.createElement('a-sphere');
       head.setAttribute('radius', '0.06');
       head.setAttribute('position', '0 0.12 0.1');
       head.setAttribute('material', 'color: yellow');
       duck.appendChild(head);
 
-      // 🟠 Schnabel
+      // Schnabel
       const beak = document.createElement('a-cone');
       beak.setAttribute('radius-bottom', '0.015');
       beak.setAttribute('radius-top', '0.005');
@@ -37,7 +37,7 @@ AFRAME.registerComponent('spawn-duck-on-click', {
       beak.setAttribute('material', 'color: orange');
       duck.appendChild(beak);
 
-      // 🤍 Flügel links & rechts
+      // Flügel links & rechts
       ['-0.09 0.05 0', '0.09 0.05 0'].forEach(pos => {
         const wing = document.createElement('a-sphere');
         wing.setAttribute('radius', '0.05');
@@ -47,7 +47,7 @@ AFRAME.registerComponent('spawn-duck-on-click', {
         duck.appendChild(wing);
       });
 
-      // 🟤 Füße links & rechts
+      // Füße links & rechts
       ['-0.03 -0.08 0.05', '0.03 -0.08 0.05'].forEach(pos => {
         const foot = document.createElement('a-box');
         foot.setAttribute('depth', '0.01');
@@ -58,11 +58,11 @@ AFRAME.registerComponent('spawn-duck-on-click', {
         duck.appendChild(foot);
       });
 
-      // 🧭 Zielpunkt zufällig im Teichbereich
+      // Zielpunkt zufällig im Teichbereich
       const targetX = startX + (Math.random() - 0.5) * 4;
       const targetZ = startZ + (Math.random() - 0.5) * 4;
 
-      // 🌀 Bewegungsverhalten wählen
+      // Bewegungsverhalten 
       const modes = ['swim', 'fly', 'waddle'];
       const mode = modes[Math.floor(Math.random() * modes.length)];
 
@@ -120,7 +120,7 @@ AFRAME.registerComponent('spawn-duck-on-click', {
         });
       }
 
-      // ⏳ Nach 7 Sekunden: Rückkehr zur Startposition + Entfernen
+      // Nach 7 Sekunden: Rückkehr zur Startposition + Entfernen
       setTimeout(() => {
         duck.setAttribute('animation__return', {
           property: 'position',
