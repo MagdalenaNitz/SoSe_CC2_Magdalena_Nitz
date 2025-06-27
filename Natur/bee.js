@@ -12,7 +12,7 @@ AFRAME.registerComponent('spawn-bee-on-click', {
         bee.setAttribute('geometry', 'primitive: box; width: 0.001; height: 0.001; depth: 0.001');
         bee.setAttribute('position', `${pos.x} ${pos.y + 0.2} ${pos.z}`);
   
-        // 🟡 Gelber ovaler Körper
+        // Gelber ovaler Körper
         const body = document.createElement('a-sphere');
         body.setAttribute('radius', '0.04');
         body.setAttribute('scale', '1.3 1 1'); // oval, aber nicht breiter als der Ring
@@ -20,7 +20,7 @@ AFRAME.registerComponent('spawn-bee-on-click', {
         body.setAttribute('shadow', 'cast: true');
         bee.appendChild(body);
 
-        // 🖤 3 eng anliegende senkrechte Ringe
+        // 3 eng anliegende senkrechte Ringe
         const ringOffsets = [-0.02, 0, 0.02];
         ringOffsets.forEach(offsetX => {
         const ring = document.createElement('a-torus');
