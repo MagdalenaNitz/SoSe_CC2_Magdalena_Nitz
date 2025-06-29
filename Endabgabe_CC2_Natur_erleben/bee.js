@@ -37,8 +37,8 @@ AFRAME.registerComponent('spawn-bee-on-click', {
         const wing1 = document.createElement('a-plane');
         wing1.setAttribute('width', '0.09');
         wing1.setAttribute('height', '0.03');
-        wing1.setAttribute('position', '0.03 0.03 0');
-        wing1.setAttribute('rotation', '0 0 45');
+        wing1.setAttribute('position', '0 0 0.05');
+        wing1.setAttribute('rotation', '90 90 0');
         wing1.setAttribute('material', 'color: white; opacity: 0.7; transparent: true; side: double');
         bee.appendChild(wing1);
   
@@ -46,8 +46,8 @@ AFRAME.registerComponent('spawn-bee-on-click', {
         const wing2 = document.createElement('a-plane');
         wing2.setAttribute('width', '0.09');
         wing2.setAttribute('height', '0.03');
-        wing2.setAttribute('position', '-0.03 0.03 0');
-        wing2.setAttribute('rotation', '0 0 -45');
+        wing2.setAttribute('position', '0 0 -0.05');
+        wing2.setAttribute('rotation', '-90 -90 0');
         wing2.setAttribute('material', 'color: white; opacity: 0.7; transparent: true; side: double');
         bee.appendChild(wing2);
   
