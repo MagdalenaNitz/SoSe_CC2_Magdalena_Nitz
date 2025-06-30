@@ -1,6 +1,6 @@
-AFRAME.registerComponent('spawn-bee-on-click', {  // Registrieren der neuen Komponente
-    init: function () {               // Laden der Komponente
-      const flower = this.el;         // Speichern der aktuellen Entity (Blume), auf der Komponente regisiriert ist.   
+AFRAME.registerComponent('spawn-bee-on-click', {        // Registrieren der neuen Komponente
+    init: function () {                                 // Laden der Komponente
+      const flower = this.el;                           // Speichern der aktuellen Entity (Blume), auf der Komponente regisiriert ist.   
   
       flower.addEventListener('click', function () {    // Funktion wird ausgeführt, wenn Klick. Biene sichtbar
         const pos = new THREE.Vector3();                // Aufrufen der Weltposition der Blume
