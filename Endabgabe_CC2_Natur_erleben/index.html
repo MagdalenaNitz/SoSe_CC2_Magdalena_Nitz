@@ -17,7 +17,7 @@
 </head>
 
 <body>
-
+  <!-- weiche Schatten (pcfsoft); Wald mit 500 Dekorationselementen, kein Boden; Cursor ist Maus; VR-Modus aktiviert-->
   <a-scene 
     shadow="type: pcfsoft"
     environment="preset: forest; dressingAmount: 500; ground: none"
@@ -34,7 +34,7 @@
       <img id="trunkTex" src="TextureTrunk.jpeg"> <!-- Textur für die Baumstämme -->
     </a-assets>
 
-    <!-- Grasboden -->
+    <!-- Grasboden; Großer Boden (200x200), leicht über Nullniveau-->
     <a-plane 
         position="0 0.01 0"
         rotation="-90 0 0"
@@ -44,15 +44,15 @@
         material="src: #grassTex; repeat: 1 1; shader: standard; side: double; roughness: 1; metalness: 0; wrap: repeat">
     </a-plane>
 
-    <!-- Himmel -->
+    <!-- Himmel mit 360 Grad-Panorama-Textur, um die Szene einzurahmen-->
     <a-sky src="#skyTex" rotation="0 -90 0"></a-sky>
 
-    <!-- Lichtquellen -->
+    <!-- Lichtquellen; Umgebungslicht, Punktlicht, Richtungslicht -->
     <a-light type="ambient" color="#445451"></a-light>
     <a-light type="point" intensity="2" position="2 4 4" castShadow="true"></a-light>
     <a-light type="directional" position="1 6 -3" intensity="0.9" castShadow="true"></a-light>
 
-    <!-- Kamera mit Cursor -->
+    <!-- Kamera mit Cursor für Interaktion; Fuse: Cursor klickt, wenn 1 Sec auf Objekt-->
     <a-camera>
         <a-cursor 
           fuse="true" 
@@ -68,7 +68,7 @@
       scale="1.5 1.5 1.5">
     </a-entity>
 
-    <!-- Interaktive Elemente -->
+    <!-- Interaktive Elemente; initialisieren Scripte-->
     <a-entity pond></a-entity> <!-- Teich -->
     <a-entity tree-field></a-entity> <!-- Bäume -->
     <a-entity flower-field></a-entity> <!-- Blumen -->
