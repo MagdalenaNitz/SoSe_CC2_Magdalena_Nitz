@@ -15,7 +15,7 @@ AFRAME.registerComponent('spawn-bee-on-click', {
         // Gelber ovaler Körper
         const body = document.createElement('a-sphere');
         body.setAttribute('radius', '0.04');
-        body.setAttribute('scale', '1.3 1 1'); // oval, aber nicht breiter als der Ring
+        body.setAttribute('scale', '1.3 1 1'); // oval
         body.setAttribute('material', 'color: yellow; roughness: 0.4; metalness: 0.1');
         body.setAttribute('shadow', 'cast: true');
         bee.appendChild(body);

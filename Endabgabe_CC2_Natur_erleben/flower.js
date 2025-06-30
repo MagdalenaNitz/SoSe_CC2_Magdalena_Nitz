@@ -13,7 +13,7 @@ AFRAME.registerComponent('flower-field', {
   
       const petalColors = ['#FF69B4', '#FFD700', '#FF4500', '#ADFF2F', '#DA70D6', '#87CEFA'];
   
-      // 1. Zufällig verteilte Blumen (außerhalb des Teichs)
+      // Zufällig verteilte Blumen (außerhalb des Teichs)
       let placed = 0;
       while (placed < randomFlowers) {
         const x = (Math.random() - 0.5) * areaSize;
@@ -27,7 +27,7 @@ AFRAME.registerComponent('flower-field', {
         placed++;
       }
   
-      // 2. Zentriertes Blumenbeet um den Teich
+      // Zentriertes Blumenbeet um den Teich
       const bedFlowerCount = 150;
 
       for (let i = 0; i < bedFlowerCount; i++) {
@@ -40,7 +40,7 @@ AFRAME.registerComponent('flower-field', {
         const x = pondX + Math.cos(angle) * distance + jitterX;
         const z = pondZ + Math.sin(angle) * distance + jitterZ;
       
-        // Bereich vor dem Teich (z. B. Richtung -Z) aussparen
+        // Bereich vor dem Teich aussparen
         const forwardAngle = -Math.PI / 2;
         const angleDiff = Math.abs(angle - forwardAngle);
         if (angleDiff < Math.PI / 4) continue;

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const x = centerX + Math.cos(angle) * radius;
       const z = centerZ + Math.sin(angle) * radius;
   
-      // Unterschiedliche Größen: von sehr klein bis mittelgroß
+      // Unterschiedliche Größen: sehr klein bis mittelgroß
       const base = 0.08 + Math.random() * 0.14; // 0.08–0.22
       const heightFactor = 0.5 + Math.random() * 0.6; // 0.5–1.1
   
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       scene.appendChild(stone);
     }
 
-    // Zusätzliche 5 Steine im Teichinneren
+    // Zusätzliche 5 Steine im Teich
     const innerStoneCount = 5;
     const innerRadius = 1.8;
 

@@ -7,11 +7,10 @@ AFRAME.registerComponent('pond', {
     pond.setAttribute('position', '0 -0.07 -5');
     pond.setAttribute('rotation', '0 0 0');
     pond.setAttribute('scale', '1.7 1 1.7'); // Durchmesser/Größe Teich
-    pond.setAttribute('src', '#waterTex');
-    pond.setAttribute('class', 'clickable');
+    pond.setAttribute('src', '#waterTex'); // Textur
+    pond.setAttribute('class', 'clickable'); //Klickfunktion
     pond.setAttribute('material', 'shader: standard; transparent: true; opacity: 0.6; roughness: 0.3; metalness: 0.1; side: double');
 
-    pond.setAttribute('class', 'clickable');
     pond.setAttribute('spawn-duck-on-click', '');
 
 
