@@ -1,18 +1,18 @@
 AFRAME.registerComponent('spawn-bee-on-click', {
-    init: function () {
-      const flower = this.el;
+    init: function () {               // Laden der Komponente
+      const flower = this.el;         // Speichern der aktuellen Entity (Blume), auf der Komponente regisiriert ist.   
   
-      flower.addEventListener('click', function () {
-        const pos = new THREE.Vector3();
+      flower.addEventListener('click', function () {    // Funktion wird ausgeführt, wenn Klick. Biene sichtbar
+        const pos = new THREE.Vector3();                // Aufrufen der Weltposition der Blume
         flower.object3D.getWorldPosition(pos);
-        const scene = flower.sceneEl;
+        const scene = flower.sceneEl;                   // Holt a-scene der Blume auf die Seite, um Biene korrekt zu positionieren
   
-        const bee = document.createElement('a-entity');
-        bee.setAttribute('visible', 'true');
-        bee.setAttribute('geometry', 'primitive: box; width: 0.001; height: 0.001; depth: 0.001');
-        bee.setAttribute('position', `${pos.x} ${pos.y + 0.2} ${pos.z}`);
+        const bee = document.createElement('a-entity'); // neue A-Frame-Entity, Biene
+        bee.setAttribute('visible', 'true');            // Biene sichtbar
+        bee.setAttribute('geometry', 'primitive: box; width: 0.001; height: 0.001; depth: 0.001');  // gibt Entity kleine Box-Geometrie. Technisch existent, aber nicht sichtbar. Aussehen dann über KindElemente
+        bee.setAttribute('position', `${pos.x} ${pos.y + 0.2} ${pos.z}`); // Positionierung der Biene etwas überhalb der Blume
   
-        // Gelber ovaler Körper
+        // Gelber ovaler (in x-Richtung gestreckt) Körper
         const body = document.createElement('a-sphere');
         body.setAttribute('radius', '0.04');
         body.setAttribute('scale', '1.3 1 1'); // oval
@@ -33,13 +33,13 @@ AFRAME.registerComponent('spawn-bee-on-click', {
         bee.appendChild(ring);
         });
   
-        // Flügel links
+        // Flügel links, halb transparent
         const wing1 = document.createElement('a-plane');
         wing1.setAttribute('width', '0.09');
         wing1.setAttribute('height', '0.03');
         wing1.setAttribute('position', '0 0 0.05');
-        wing1.setAttribute('rotation', '90 90 0');
-        wing1.setAttribute('material', 'color: white; opacity: 0.7; transparent: true; side: double');
+        wing1.setAttribute('rotation', '90 90 0');  // leicht gedreht
+        wing1.setAttribute('material', 'color: white; opacity: 0.7; transparent: true; side: double'); // Seiten doppelt sichtbar
         bee.appendChild(wing1);
   
         // Flügel rechts
@@ -51,24 +51,24 @@ AFRAME.registerComponent('spawn-bee-on-click', {
         wing2.setAttribute('material', 'color: white; opacity: 0.7; transparent: true; side: double');
         bee.appendChild(wing2);
   
-        // Fluganimation
+        // Fluganimation. 
         bee.setAttribute('animation', {
-          property: 'position',
-          dir: 'alternate',
-          dur: 2000,
-          easing: 'easeInOutSine',
-          loop: true,
-          to: `${pos.x + (Math.random() - 0.5)} ${pos.y + 0.6 + Math.random() * 0.3} ${pos.z + (Math.random() - 0.5)}`
+          property: 'position', // Start direkt über Blume. 
+          dir: 'alternate', // Bewegung: Hin und Zurück
+          dur: 2000,  // 2 Sec pro Richtung
+          easing: 'easeInOutSine',  // Sanft
+          loop: true, // endlos
+          to: `${pos.x + (Math.random() - 0.5)} ${pos.y + 0.6 + Math.random() * 0.3} ${pos.z + (Math.random() - 0.5)}` // Ziel ist ein zufällig gesetzter Punkt etwas höher und seitlicher
         });
   
-        // Nach 5 Sekunden verschwinden
+        // Nach 5 Sekunden verschwinden und löschen der Biene
         setTimeout(() => {
           if (bee.parentNode) {
             bee.parentNode.removeChild(bee);
           }
         }, 5000);
   
-        scene.appendChild(bee);
+        scene.appendChild(bee);   // Hinzufügen der Biene zur Szene, damit sie erscheint.
       });
     }
   });
