@@ -1,4 +1,4 @@
-AFRAME.registerComponent('spawn-bee-on-click', {
+AFRAME.registerComponent('spawn-bee-on-click', {  // Registrieren der neuen Komponente
     init: function () {               // Laden der Komponente
       const flower = this.el;         // Speichern der aktuellen Entity (Blume), auf der Komponente regisiriert ist.   
   

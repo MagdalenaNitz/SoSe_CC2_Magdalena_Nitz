@@ -1,4 +1,4 @@
-AFRAME.registerComponent('spawn-duck-on-click', {
+AFRAME.registerComponent('spawn-duck-on-click', {       // Registrieren der neuen Komponente
   init: function () {                                   // Laden der Komponente
     this.el.addEventListener('click', () => {           // Funktion wird ausgeführt, wenn Klick. Ente sichtbar
       const scene = this.el.sceneEl;                    // Zugriff auf gesamte Seite
